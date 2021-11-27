@@ -3,7 +3,7 @@
     so the card once again stays pretty simple and free of logic
     at first i thought the card should hold the logic for what
     could be stacked on top of it but i think that would be better
-    at a higher level, the CardStack itself.
+    at a higher level, the Stack itself.
 
 
     card: name, suit, color, value, facedown (boolean with default true)
@@ -12,7 +12,7 @@
             will potentially deal 1 or 3 cards at a time
 
 
-    a CardStack is 1 of 2 types:
+    a Stack is 1 of 2 types:
          a suit stack that begins with an ace which then determines the suit
             of the whole stack. once the stack is topped with it's king, the
             stack is then 'complete'.
@@ -110,6 +110,18 @@ class Card {
         this.value = value
         this.facedown = true
     }
+
+
+    get info() {
+        const { name, suit, color, value } = this
+
+        return {
+            name,
+            suit,
+            color,
+            value
+        }
+    }
 }
 
 /*
@@ -119,25 +131,36 @@ class Card {
     but also require the next card to be of different color.
 */
 
-class CardStack {
+class Stack {
     constructor() {
         this.stack = []
     }
 
     add( card ) {
         // adds a card to top but needs rules
+        this.stack.push( card )
     }
 
     remove() {
         // removes a card or cards off the top
         // for a gamestack it would need to know the target card
         // and return and array of the target plus all cards on top of it
-
+        return this.stack.pop()
 
     }
+
+    get top() {
+        if (this.stack.length < 1) {
+            return
+        }
+
+        return this.stack[ this.stack.length - 1]
+    }
+
+
 }
 
-class SuitStack extends CardStack {
+class SuitStack extends Stack {
     constructor() {
         super()
         this.suit = null
@@ -161,22 +184,12 @@ class SuitStack extends CardStack {
         return false
     }
 
-    get top() {
-        if ( this.stack.length < 1 ) {
-            return undefined
-        }
-
-
-        const topCard = this.stack[ this.stack.length - 1 ]
-        return {
-            
-        }
-    }
+   
 }
 
 
 
-class GameStack extends CardStack {
+class GameStack extends Stack {
     constructor() {
         super()
     }
