@@ -102,27 +102,27 @@ const cardValue = {
     K: 13,
 }
 
-class Card {
-    constructor( { name, suit, color, value } ) {
-        this.name = name
-        this.suit = suit
-        this.color = color
-        this.value = value
-        this.facedown = true
-    }
+// class Card {
+//     constructor( { name, suit, color, value } ) {
+//         this.name = name
+//         this.suit = suit
+//         this.color = color
+//         this.value = value
+//         this.facedown = true
+//     }
 
 
-    get info() {
-        const { name, suit, color, value } = this
+//     get info() {
+//         const { name, suit, color, value } = this
 
-        return {
-            name,
-            suit,
-            color,
-            value
-        }
-    }
-}
+//         return {
+//             name,
+//             suit,
+//             color,
+//             value
+//         }
+//     }
+// }
 
 /*
     Not sure if its better to split them like this, not a whole lot of shared logic.
@@ -149,12 +149,24 @@ class Stack {
 
     }
 
+    peek() {
+        return this.top
+    }
+
     get top() {
         if (this.stack.length < 1) {
-            return
+            return null
         }
 
         return this.stack[ this.stack.length - 1]
+    }
+
+    get value() {
+        if (this.top === null) {
+            return null
+        }
+
+        return this.top.value
     }
 
 
@@ -197,5 +209,5 @@ class GameStack extends Stack {
 }
 
 class Table {
-
+    
 }

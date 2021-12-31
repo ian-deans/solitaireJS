@@ -28,7 +28,7 @@ class Card {
 
 class CardStack {
     /**
-     * these could potentially be simple arrays acting as stacks
+     * these could potentially be simple arrays acting as stacks.
      * the cards only come off the top, you can go lower but it takes
      * all card ontop with it.
      */
@@ -36,3 +36,5 @@ class CardStack {
     
 
 }
+
+export default Card
